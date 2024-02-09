@@ -951,7 +951,7 @@ def generate_docs(
 
     for path in paths:  # lgtm [py/non-iterable-in-for-loop]
         if os.path.isdir(path):
-            if validate and subprocess.call(f"{pydocstyle_cmd} {path}", shell=True) > 0:
+            if validate and subprocess.call(f"{pydocstyle_cmd} {path}", shell=False) > 0:
                 raise Exception(f"Validation for {path} failed.")
 
             if not stdout_mode:
@@ -987,7 +987,7 @@ def generate_docs(
                         f"Failed to generate docs for module {module_name}: " + repr(ex)
                     )
         elif os.path.isfile(path):
-            if validate and subprocess.call(f"{pydocstyle_cmd} {path}", shell=True) > 0:
+            if validate and subprocess.call(f"{pydocstyle_cmd} {path}", shell=False) > 0:
                 raise Exception(f"Validation for {path} failed.")
 
             if not stdout_mode:
